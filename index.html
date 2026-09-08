@@ -6,6 +6,31 @@
     <title>Terve</title>
 </head>
 <body>
-<h1>Terve tuloa Santerin sivulle!</h1>
+<div>
+    <h1>Terve tuloa Santerin sivulle!</h1>
+    <p>Questions:</p>
+    <ol>
+        <li>When is it more feasible to use application containers than full OS virtualization?</li>
+        <li>Compare application containers to microservices</li>
+        <li>Describe shortly what is Kubernetes and what alternatives are there?</li>
+        <li>List some information security risks when using third-party containers?</li>
+    </ol>
+    <p>Answers:</p>
+    <ol>
+        <li>Containers are faster to boot up than Virtual Machines and are more lightweight allowing for more apps in a single server.
+            VMs offer stronger isolation and security which is useful for multi-OS environments and legacy applications.</li>
+        <li>Containers are as its name implies packages which are used for consistent excecution across environments, where as microservices
+            are an architecture of different small services. Microservices and containers are usually used together for efficient scaling and speed compared to
+            microservices and VMs.
+        </li>
+        <li>Kubernetes is effectively a container manager which helps containers run smoothly and efficiently. It restarts crashed containers, balances network traffic
+            and scales resources depending on load. Other alternatives include AWS ECS, HashiCorp Nomad and Docker Swarm which all include their own benefits and downsides.
+        </li>
+        <li>Containers are weak to supply chain attacks where a malicious actor uploads for example a web server to Docker Hub which contains a crypto-miner or malware.
+            If you download a base image which is behind software updates, it could have unpatched vulnerabilities.
+            There are dozens of ways hackers can breach your container from root access, docker sockets, accidental key leaks. Though the usual vigilance in your own security measure are enough.
+        </li>
+    </ol>
+</div>
 </body>
 </html>
