@@ -7,30 +7,61 @@
 </head>
 <body>
 <div>
-    <h1>Terve tuloa Santerin sivulle!</h1>
-    <p>Questions:</p>
-    <ol>
-        <li>When is it more feasible to use application containers than full OS virtualization?</li>
-        <li>Compare application containers to microservices</li>
-        <li>Describe shortly what is Kubernetes and what alternatives are there?</li>
-        <li>List some information security risks when using third-party containers?</li>
-    </ol>
-    <p>Answers:</p>
-    <ol>
-        <li>Containers are faster to boot up than Virtual Machines and are more lightweight allowing for more apps in a single server.
-            VMs offer stronger isolation and security which is useful for multi-OS environments and legacy applications.</li>
-        <li>Containers are as its name implies packages which are used for consistent excecution across environments, where as microservices
-            are an architecture of different small services. Microservices and containers are usually used together for efficient scaling and speed compared to
-            microservices and VMs.
-        </li>
-        <li>Kubernetes is effectively a container manager which helps containers run smoothly and efficiently. It restarts crashed containers, balances network traffic
-            and scales resources depending on load. Other alternatives include AWS ECS, HashiCorp Nomad and Docker Swarm which all include their own benefits and downsides.
-        </li>
-        <li>Containers are weak to supply chain attacks where a malicious actor uploads for example a web server to Docker Hub which contains a crypto-miner or malware.
-            If you download a base image which is behind software updates, it could have unpatched vulnerabilities.
-            There are dozens of ways hackers can breach your container from root access, docker sockets, accidental key leaks. Though the usual vigilance in your own security measure are enough.
-        </li>
-    </ol>
+    <h1>Tervetuloa Santerin sivulle!</h1>
+    <div style="max-width: 800px; padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
+        <p>Week 2 Questions:</p>
+        <ol>
+            <li>When is it more feasible to use application containers than full OS virtualization?</li>
+            <li>Compare application containers to microservices</li>
+            <li>Describe shortly what is Kubernetes and what alternatives are there?</li>
+            <li>List some information security risks when using third-party containers?</li>
+        </ol>
+        <p>Answers:</p>
+        <ol>
+            <li style="padding: 10px;">Containers are faster to boot up than Virtual Machines and are more lightweight allowing for more apps in a single server.
+                VMs offer stronger isolation and security which is useful for multi-OS environments and legacy applications.</li>
+            <li style="padding: 10px;">Containers are as its name implies packages which are used for consistent excecution across environments, where as microservices
+                are an architecture of different small services. Microservices and containers are usually used together for efficient scaling and speed compared to
+                microservices and VMs.
+            </li>
+            <li style="padding: 10px;">Kubernetes is effectively a container manager which helps containers run smoothly and efficiently. It restarts crashed containers, balances network traffic
+                and scales resources depending on load. Other alternatives include AWS ECS, HashiCorp Nomad and Docker Swarm which all include their own benefits and downsides.
+            </li>
+            <li style="padding: 10px;">Containers are weak to supply chain attacks where a malicious actor uploads for example a web server to Docker Hub which contains a crypto-miner or malware.
+                If you download a base image which is behind software updates, it could have unpatched vulnerabilities.
+                There are dozens of ways hackers can breach your container from root access, docker sockets, accidental key leaks. Though the usual vigilance in your own security measure are enough.
+            </li>
+        </ol>
+    </div>
+    <div style="padding: 20px; font-size: large; font-family: Arial, Helvetica, sans-serif;">
+        Week 3 Images:
+        <img src="https://a3s.fi/swift/v1/Rahti%C3%84mp%C3%A4ri/allas%20kuva.jpg" width="650" alt="Screenshot of Allas not working >:C">
+        <img src="https://a3s.fi/swift/v1/Rahti%C3%84mp%C3%A4ri2/Screenshot_4.jpg" width="650" alt="Screenshot of Allas working :D">
+    </div>
+    <div style="max-width: 800px; padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
+        <p>Week 3 questions:</p>
+        <ol>
+            <li>What would a mid-size company store to the Amazon Glacier? What not? Why? What other large cloud backup or mass storage providers are there?</li>
+            <li>Select and describe 2-3 well-known Amazon S3 data leak incidents. What went wrong? List some automated S3 bucket search engines and attack tools (don't try the tools, illegal!)</li>
+            <li>Your thoughts about when to maintain your own web server and when to use SaaS/PaaS/IaaS to provide web services?</li>
+            <li>Describe reasons, why many IoT devices (internet connected home appliances, Smart-TVs and such) are using Google's 8.8.8.8 or some other public DNS resolvers?</li>
+        </ol>
+        <p>Answers:</p>
+        <ol>
+            <li style="padding: 10px;">A company could use it for long-term backups, legal compliance logs, or old raw media files. They would not store anything relevant or something that would need to be pulled often there because retrieving data from Glacier can take hours. 
+                Alternatives include Google Cloud Coldline and Azure Archive.</li>
+            <li style="padding: 10px;">2025 Codefinger Ransomware Attack, A group exploited compromised AWS credentials to encrypt S3 data using SSE-C, demanding ransom from multiple organizations.
+                2024 vpnMentor Discovery, A large-scale operation scanned millions of sites, using misconfigured S3 buckets as a "shared drive" to exfiltrate sensitive keys and customer data.
+                The 2025 leak was caused by compromised long-lived AWS access keys and the 2024 leak was an application-level misconfigurations on customer public-facing websites.
+                Some well known automated S3 bucket search engines and attack tools are: Grayhat Warfare, BuckHacker, Censys and Shodan</li>
+            <li style="padding: 10px;">You should maintain your own web server when you need absolute physical control over the hardware, have strict data residency laws, or have a predictable workload where buying hardware is cheaper than monthly cloud fees. 
+                You use PaaS when you want to focus purely on development and let the provider handle OS updates, networking, and scaling.</li>
+            <li style="padding: 10px;">Using a public DNS like Google's or Cloudflare's (1.1.1.1) provides better privacy and can bypass local ISP censorship. 
+                The downside is CDN routing issues. Content Delivery Networks use your DNS resolver's location to send you to the closest server. 
+                If you use a Google DNS server far away from your house, the CDN might route you to a slower, distant server.</li>
+        </ol>
+    </div>
 </div>
+
 </body>
 </html>
