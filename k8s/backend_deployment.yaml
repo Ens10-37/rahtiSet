@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: yourdockerhubuser/rahti-backend:1.0.0 # CHANGE THIS
+          image: ens10/rahti-backend:1.0.0
           ports:
             - containerPort: 3000
           env:

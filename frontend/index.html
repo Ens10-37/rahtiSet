@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Terve</title>
 </head>
 <body>
@@ -32,8 +33,9 @@
         .catch(error => console.error('Error recording visit:', error));
 </script>
 
-    <div style="max-width: 800px; padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
-        <p>Week 2 Questions:</p>
+    <input type="checkbox" id="toggle1" style="display:none;">
+    <label for="toggle1">Week 2 Questions</label>
+    <div class="content content1" style="max-width: 800px; padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
         <ol>
             <li>When is it more feasible to use application containers than full OS virtualization?</li>
             <li>Compare application containers to microservices</li>
@@ -57,13 +59,15 @@
             </li>
         </ol>
     </div>
-    <div style="padding: 20px; font-size: large; font-family: Arial, Helvetica, sans-serif;">
-        Week 3 Images:
+    <input type="checkbox" id="toggle2" style="display:none;">
+    <label for="toggle2">Week 3 images</label>
+    <div class="content content2" style="padding: 20px; font-size: large; font-family: Arial, Helvetica, sans-serif;">
         <img src="https://a3s.fi/swift/v1/Rahti%C3%84mp%C3%A4ri/allas%20kuva.jpg" width="650" alt="Screenshot of Allas not working >:C">
         <img src="https://a3s.fi/swift/v1/Rahti%C3%84mp%C3%A4ri2/Screenshot_4.jpg" width="650" alt="Screenshot of Allas working :D">
     </div>
-    <div style="max-width: 800px; padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
-        <p>Week 3 questions:</p>
+    <input type="checkbox" id="toggle3" style="display:none;">
+    <label for="toggle3">Week 3 questions</label>
+    <div class="content content3" style="padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
         <ol>
             <li>What would a mid-size company store to the Amazon Glacier? What not? Why? What other large cloud backup or mass storage providers are there?</li>
             <li>Select and describe 2-3 well-known Amazon S3 data leak incidents. What went wrong? List some automated S3 bucket search engines and attack tools (don't try the tools, illegal!)</li>
@@ -85,6 +89,8 @@
                 If you use a Google DNS server far away from your house, the CDN might route you to a slower, distant server.</li>
         </ol>
     </div>
+
+    
 </div>
 
 </body>
