@@ -9,6 +9,29 @@
 <div>
     <h1>Tervetuloa Santerin sivulle!</h1>
     <h3>Link to repo: https://github.com/Ens10-37/rahtiSet</h3>
+
+    <div style="max-width: 800px; padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
+    <h3>Database Communication Test</h3>
+    <p>MySQL Server Time: <strong id="server-time">Loading...</strong></p>
+    <p>Total Page Visits: <strong id="visit-count">Loading...</strong></p>
+</div>
+
+<script>
+    fetch('/api/time')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('server-time').innerText = data.time;
+        })
+        .catch(error => console.error('Error fetching time:', error));
+
+    fetch('/api/visit', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('visit-count').innerText = data.totalVisits;
+        })
+        .catch(error => console.error('Error recording visit:', error));
+</script>
+
     <div style="max-width: 800px; padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
         <p>Week 2 Questions:</p>
         <ol>

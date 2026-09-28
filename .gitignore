@@ -1,0 +1,10 @@
+k8s/secret.yaml
+secret.yaml
+
+backend/node_modules/
+backend/package-lock.json
+
+.env
+
+.DS_Store
+Thumbs.db
