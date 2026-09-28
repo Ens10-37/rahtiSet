@@ -26,15 +26,29 @@
         .catch(error => console.error('Error fetching time:', error));
 
     fetch('/api/visit', { method: 'POST' })
+        .then(() => fetch('/api/visits'))
         .then(response => response.json())
         .then(data => {
-            document.getElementById('visit-count').innerText = data.totalVisits;
+            document.getElementById('visit-count').innerText = `${data.totalVisits} (Source: ${data.source})`;
         })
-        .catch(error => console.error('Error recording visit:', error));
+        .catch(error => console.error('Error:', error));
+
+    function fetchCacheData() {
+    fetch('/api/visits')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('visit-count').innerText = `${data.totalVisits} (Source: ${data.source})`;
+        })
+        .catch(error => console.error('Error:', error));
+}
 </script>
+<div>
+    <p class="textStyle">Redis caches for 60 seconds after caching then deletes itself. Try keeping this page open for 60s and press the button again.</p>
+<button onclick="fetchCacheData()" style="margin: 10px 0; padding: 5px 10px;">--->Redis testings button<---</button>
+</div>
 
     <input type="checkbox" id="toggle1" style="display:none;">
-    <label for="toggle1">Week 2 Questions</label>
+    <label class="textStyle" for="toggle1" href="">Week 2 Questions</label>
     <div class="content content1" style="max-width: 800px; padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
         <ol>
             <li>When is it more feasible to use application containers than full OS virtualization?</li>
@@ -60,14 +74,14 @@
         </ol>
     </div>
     <input type="checkbox" id="toggle2" style="display:none;">
-    <label for="toggle2">Week 3 images</label>
+    <label for="toggle2" href="" class="textStyle">Week 3 images</label>
     <div class="content content2" style="padding: 20px; font-size: large; font-family: Arial, Helvetica, sans-serif;">
         <img src="https://a3s.fi/swift/v1/Rahti%C3%84mp%C3%A4ri/allas%20kuva.jpg" width="650" alt="Screenshot of Allas not working >:C">
         <img src="https://a3s.fi/swift/v1/Rahti%C3%84mp%C3%A4ri2/Screenshot_4.jpg" width="650" alt="Screenshot of Allas working :D">
     </div>
     <input type="checkbox" id="toggle3" style="display:none;">
-    <label for="toggle3">Week 3 questions</label>
-    <div class="content content3" style="padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
+    <label for="toggle3" href="" class="textStyle">Week 3 questions</label>
+    <div class="content content3 textStyle" style="padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
         <ol>
             <li>What would a mid-size company store to the Amazon Glacier? What not? Why? What other large cloud backup or mass storage providers are there?</li>
             <li>Select and describe 2-3 well-known Amazon S3 data leak incidents. What went wrong? List some automated S3 bucket search engines and attack tools (don't try the tools, illegal!)</li>
@@ -89,7 +103,39 @@
                 If you use a Google DNS server far away from your house, the CDN might route you to a slower, distant server.</li>
         </ol>
     </div>
-
+    <input type="checkbox" id="toggle4" style="display:none;">
+    <label for="toggle4" href="" class="textStyle">Week 5 questions</label>
+    <div class="content content4" style="padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
+        <ol>
+            <li>What is YAML and why has it become the default configuration format for kubernetes/Rahti manifests? compare it briefly to JSON.</li>
+            <li>What is a Web Application Firewall (WAF) and what kinds of attacks does it defend against? Where would you place one in the three-container architecture you built in Week 4</li>
+            <li>Explain the difference between SAML and OAuth. When would a company choose one over the other?</li>
+            <li>List some public APIs and describe a realistic integration you could add to the backend you built in Week 4</li>
+        </ol>
+        <p>Answers:</p>
+        <ol>
+            <li style="padding: 10px;">
+                YAML (YAML Ain't Markup Language) is a human-readable data serialization standard. 
+                It has become the default for Kubernetes/Rahti manifests because it's more readable and less verbose than JSON, making it easier to manage complex configurations.
+            </li>
+            <li style="padding: 10px;">
+                A Web Application Firewall (WAF) is a security system that monitors and filters HTTP traffic between a web application and the Internet. 
+                It defends against attacks like SQL injection, cross-site scripting (XSS), and other OWASP top 10 threats. 
+                In a three-container architecture, a WAF would typically be placed in front of the web server container to filter incoming traffic before it reaches the application.
+            </li>
+            <li style="padding: 10px;">
+                SAML (Security Assertion Markup Language) is an XML-based protocol used for single sign-on (SSO) and identity federation, primarily in enterprise environments. 
+                OAuth is an open standard for access delegation, commonly used for token-based authentication and authorization in web and mobile applications. 
+                A company might choose SAML for enterprise SSO scenarios and OAuth for API access and third-party integrations.
+            </li>
+            <li style="padding: 10px;">
+                Public APIs provide open access to data like local weather, public transit routing (like HSL), or cryptocurrency prices. 
+                A highly realistic integration for your Express backend would be fetching the local Oulu weather from an open weather API. 
+                Your backend could make the external API call, store the weather data temporarily in the Redis cache in my site (to avoid hitting external rate limits on every single page refresh), 
+                and then serve it to your frontend to display next to your visit counter.
+            </li>
+        </ol>
+    </div>
     
 </div>
 

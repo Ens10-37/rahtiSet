@@ -1,18 +1,16 @@
-
 .content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.5s ease-out;
 }
 
-#toggle1:checked ~ .content1 {  
-  max-height: 500px;
+#toggle1:checked ~ .content1,
+#toggle2:checked ~ .content2,
+#toggle3:checked ~ .content3,
+#toggle4:checked ~ .content4 {  
+  max-height: 2500px;
 }
 
-#toggle2:checked ~ .content2 {  
-  max-height: 500px;
-}
-
-#toggle3:checked ~ .content3 {  
-  max-height: 500px;
+.textStyle {
+  padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;
 }
