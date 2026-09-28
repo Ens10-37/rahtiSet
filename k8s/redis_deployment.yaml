@@ -15,5 +15,6 @@ spec:
       containers:
         - name: redis
           image: redis:alpine
+          args: ["--save", ""]
           ports:
             - containerPort: 6379

@@ -1,1 +1,1 @@
-Some web application which demonstrates knowledge of deployment, docker, yaml and other stuff.
+Some web application which demonstrates knowledge of deployment, docker, yaml, redis and other stuff.
