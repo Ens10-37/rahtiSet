@@ -7,6 +7,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    console.log(JSON.stringify({
+      timestamp: new Date().toISOString(),
+      method: req.method,
+      path: req.originalUrl,
+      status: res.statusCode,
+      durationMs: duration
+    }));
+  });
+  next();
+});
+
 const dbConfig = {
     host: process.env.DB_HOST || 'db',
     user: process.env.DB_USER || 'root',
@@ -39,6 +54,16 @@ async function initServices() {
     }
 }
 initServices();
+
+app.get('/healthz', async (req, res) => {
+  try {
+    await pool.query('SELECT 1'); 
+    res.status(200).send('OK');
+  } catch (err) {
+    console.error('Health check failed:', err);
+    res.status(500).send('Database unavailable');
+  }
+});
 
 app.get('/api/time', async (req, res) => {
     try {

@@ -17,6 +17,18 @@ spec:
           image: ens10/rahti-backend:1.0.3
           ports:
             - containerPort: 3000
+              livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
           env:
             - name: DB_HOST
               valueFrom:
