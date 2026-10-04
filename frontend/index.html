@@ -136,7 +136,56 @@
             </li>
         </ol>
     </div>
-    
+    <input type="checkbox" id="toggle2" style="display:none;">
+    <label for="toggle2" href="" class="textStyle">Week 6 images</label>
+    <div class="content content2" style="padding: 20px; font-size: large; font-family: Arial, Helvetica, sans-serif;">
+        <img src="https://a3s.fi/swift/v1/documents%20of%20cicd%20gitstuff/cicd%20jobbings.jpg" width="650">
+        <img src="https://a3s.fi/swift/v1/documents%20of%20cicd%20gitstuff/push%20suce.jpg" width="650">
+        <P>Screenshot of gihub workflow success.</P>
+        <img src="https://a3s.fi/swift/v1/documents%20of%20cicd%20gitstuff/push%20success.jpg" width="650">
+        <p>Screenshot of docker deploying the new image.</p>
+        <img src="https://a3s.fi/swift/v1/documents%20of%20cicd%20gitstuff/yml%20tiedosto.jpg" width="650">
+        <p>Screenshot of .yml file.</p>
+    </div>
+    <input type="checkbox" id="toggle4" style="display:none;">
+    <label for="toggle4" href="" class="textStyle">Week 6 questions</label>
+    <div class="content content4" style="padding: 20px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">
+        <ol>
+            <li>Describe the structure of a GitHub Actions workflow (triggers, jobs, steps). What would a minimal pipeline for the app you built in Week 4/5 need to do?</li>
+            <li>What are the three pillars of observability (metrics, logs, traces)? Give an example of a question each one is best suited to answer.</li>
+            <li>Explain the difference between a liveness probe and a readiness probe in Kubernetes/Rahti. What happens when each one fails?</li>
+            <li>Why should secrets (registry tokens, cluster login tokens) never be hard-coded into a CI/CD pipeline file? How does GitHub Actions handle this instead?</li>
+        </ol>
+        <p>Answers:</p>
+        <ol>
+            <li style="padding: 10px;">
+                A GitHub Actions workflow is organized hierarchically. It begins with triggers (on:), which are specific events that start the pipeline, such as a push to the main branch or a pull request. 
+                Once triggered, the workflow executes one or more jobs, which are sets of operations that run on a specific temporary server environment, like an Ubuntu runner. 
+                Inside each job are steps, which are the individual sequential tasks executed on that runner, such as running a shell command or using a pre-built community action. 
+                For the multi-container app built in Week 4/5, a minimal pipeline must check out the source code, authenticate with a container registry (Docker Hub), build and push the new backend image, 
+                authenticate with the Rahti OpenShift cluster, and finally execute an oc set image command to update the deployment.
+            </li>
+            <li style="padding: 10px;">
+                <ul>
+                    <li>Metrics: Quantitative measurements over time. Ex: "What is the average response time of my API over the last 24 hours?"</li>
+                    <li>Logs: Detailed records of events and errors. Ex: "What error messages were generated during the last failed deployment?"</li>
+                    <li>Traces: End-to-end tracking of requests across services. Ex: "Which microservice is causing the latency in my user request flow?"</li>
+                </ul>    
+            </li>
+            <li style="padding: 10px;">
+                These probes serve two entirely distinct self-healing purposes in Kubernetes. 
+                A liveness probe checks if a container is fundamentally healthy and functioning; if it fails continuously, Rahti assumes the application is stuck in an unrecoverable state (like a deadlock) and will forcefully kill and restart the pod. 
+                A readiness probe checks if a container is fully prepared to receive external user traffic; if it fails—for example, if the database temporarily drops the connection—Rahti does not kill the pod. Instead, it temporarily removes the pod's IP address from the Service endpoints, 
+                ensuring users are not routed to a broken container until the probe succeeds again.
+            </li>
+            <li style="padding: 10px;">
+                Hard-coding sensitive credentials directly into a pipeline .yml file exposes them in plain text within the Git version control history. 
+                Anyone with read access to the repository (or the entire internet, if the repository is public) could easily extract those tokens and gain unauthorized write access to your Docker Hub registry or Rahti cluster infrastructure.
+                GitHub Actions solves this by using Encrypted Secrets. Developers store the raw credentials securely in the repository's web settings, and the YAML file references them dynamically using variables like ${{ secrets.DOCKER_TOKEN }}. 
+                When the pipeline runs, GitHub injects the credentials securely and automatically masks them with asterisks (***) in the console logs to prevent accidental exposure.
+            </li>
+        </ol>
+    </div>
 </div>
 
 </body>
